@@ -593,10 +593,26 @@ When it comes the revisions made onto our PyScript, it is important to higlight 
 To ensure that the code is understandable, it's important to point out that the only revision that would have to be made onto the pyscript is just in the declaration of lgbm in our code.
 
 ```
-lgbm = lgb.LGBMClassifier(num_leaves=args["num_leaves"], learning_rate=args["learning_rate"], n_estimators=args["n_estimators"], n_jobs=args["n_jobs"], device=args["device"], gpu_platform_id=args["gpu_platform_id"], gpu_device_id=args["gpu_device_id"])
+lgbm = lgb.LGBMClassifier(num_leaves=args["num_leaves"], learning_rate=args["learning_rate"], n_estimators=args["n_estimators"], n_jobs=args["n_jobs"], device='gpu', gpu_platform_id=0, gpu_device_id=0)
 ```
 
 ## How these arguments should look in WEKA
-When it comes to applying this script onto WEKA, it is important to always display how the arguments should look on your enviornment. As displayed below, the three new arguments should be given their values as dsiplayed. If you have different platforms or GPUs you want to utilize, you can modify the parameters, that is the whole reason why we wanted to implement GPU support into your pyscript.
+When it comes to applying this script onto WEKA, it is important to always display how the arguments should look on your enviornment. As displayed below, the three new arguments should already be given their values through the pyscript. If you have different platforms or GPUs you want to utilize, you can modify the parameters, that is the whole reason why we wanted to implement GPU support into your pyscript.
+![light_GBM_weka](https://user-images.githubusercontent.com/49813790/140093207-29705d68-6e37-4b3b-a4bb-dce35c1b85b0.png)
 
-![LightGBM_GPU_Support](https://user-images.githubusercontent.com/49813790/137139156-75494abd-0fb2-4a92-add6-50a017eae03c.png)
+
+# BONUS #4: LightGBM GPU Support
+If you are reading this specefic part of this documentation, then it means you are interested in implementing GPU support into your CatBoost pyscript. Luckily, there is an efficient way to implement it and it isn't tedious. It is important to always check if the classifier we are utilizing provides GPU support.  In this section, we will delve into how we can implement GPU support into our PyScript.
+
+## The code implemented onto the CatBoost Pyscript
+To ensure that the code is understandable, it's important to point out that the only revision that would have to be made onto the pyscript is just in the declaration of lgbm in our code.
+```
+CB = catboost.CatBoostClassifier(num_leaves = args["num_leaves"], learning_rate = args["learning_rate"], n_estimators = args["n_estimators"], thread_count= args["thread_count"], grow_policy='Lossguide', task_type='GPU', devices='0')
+```
+
+## How these arguments should look in WEKA
+When it comes to applying this script onto WEKA, it is important to always display how the arguments should look on your enviornment. As displayed below, the three new arguments should already be given their values through the pyscript. If you have different platforms or GPUs you want to utilize, you can modify the parameters, that is the whole reason why we wanted to implement GPU support into your pyscript.
+
+![CATBOOST_GPU](https://user-images.githubusercontent.com/49813790/140094370-4a0706b0-98d9-4fb6-b440-d65bb8ed6761.png)
+
+
