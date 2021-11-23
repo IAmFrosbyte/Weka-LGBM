@@ -601,7 +601,7 @@ When it comes to applying this script onto WEKA, it is important to always displ
 ![light_GBM_weka](https://user-images.githubusercontent.com/49813790/140093207-29705d68-6e37-4b3b-a4bb-dce35c1b85b0.png)
 
 
-# BONUS #4: LightGBM GPU Support
+# BONUS #4: CatBoost GPU Support
 If you are reading this specefic part of this documentation, then it means you are interested in implementing GPU support into your CatBoost pyscript. Luckily, there is an efficient way to implement it and it isn't tedious. It is important to always check if the classifier we are utilizing provides GPU support.  In this section, we will delve into how we can implement GPU support into our PyScript.
 
 ## The code implemented onto the CatBoost Pyscript
